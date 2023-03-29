@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>slides.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/core-js-2.5.3/shim.min.js"></script>
+    <script src="libs/react-17.0.0/react.min.js"></script>
+    <script src="libs/react-17.0.0/react-dom.min.js"></script>
+    <script src="libs/reactwidget-1.0.0/react-tools.js"></script>
+    <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+    <script src="libs/reactable-binding-0.2.3/reactable.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+    <link rel="stylesheet" href="resources/css/progress.css" type="text/css" />
+    <link rel="stylesheet" href="resources/css/adds.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+class: inverse, left, middle
+
+background-image: url(resources/images/cover.gif)
+background-size: cover
+
+# Deep Learning
+
+&lt;img src="resources/images/logo-ibm.png" width="150px"/&gt;
+
+.large[Thiago Pires | Set 2021]
+
+---
+layout: true
+
+background-image: url(resources/images/logo-ibm.png)
+background-position: 97% 3%
+background-size: 7%
+
+---
+class: left middle
+background-color: #00b33c
+
+# Introdução ao Deep Learning
+
+&gt; Deep Learning é um subcampo da inteligência artificial que tem por objetivo criar um modelo grande de rede neurais que é capaz de fazer *decisões precisas baseada em dados*.
+
+---
+# Introdução ao Deep Learning
+
+.pull-left[
+### Hoje em dia, Deep Learning is quase onipresente na tecnologia: 
+
+- Presente em **smart phones** (reconhecimento de voz, detecção de face, etc); 
+- **Setor da saúde** (processamento de imagens médicas para diagnóstico); 
+- **Carros autonomos**; etc
+]
+
+.pull-right[
+### AlphaGo
+AlphaGo foi o primeiro programa de computador a vencer um jogador profissional de Go.
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="resources/images/alpha-go.jpg" alt="Capa do Documentário da NETFLIX (AlphaGo, 2018)" width="20%" /&gt;
+&lt;p class="caption"&gt;Capa do Documentário da NETFLIX (AlphaGo, 2018)&lt;/p&gt;
+&lt;/div&gt;
+
+&gt; *Há mais possibilidade de configuração em um tabuleiro de Go do que há átomos no universo*
+
+Assim, isso torna uma IA jogar Go bastante desafiante!
+]
+
+---
+# Introdução ao Deep Learning
+
+.left-column[
+### Inteligência artificial,
+### Machine Learning, e
+### Deep Learning
+]
+
+.right-column[
+.pull-left[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="resources/images/ai-ml-dl.png" alt="Relação entre inteligência artificial, machine learning, e deep learning" width="90%" /&gt;
+&lt;p class="caption"&gt;Relação entre inteligência artificial, machine learning, e deep learning&lt;/p&gt;
+&lt;/div&gt;
+]
+
+.pull-right[
+&gt;*Machine learning envolve o desenvolvimento e avaliação de uma algorítmo que possibilita um computador aprender/extrair uma função de um conjunto de dados*
+]
+]
+
+---
+# Introdução ao Deep Learning
+
+.left-column[
+### Conjunto de dados,
+### Algorítmo, e
+### Função
+]
+
+.right-column[
+- **Conjunto de dados** é uma tabela onde cada linha contém um exemplo de um domínio descrito na coluna
+
+<div id="htmlwidget-39182335d9f1ba3fdb9a" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-39182335d9f1ba3fdb9a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"ID":[1,2,3,4],"Annual Incoming $":[150,250,450,200],"Current Debt $":[-100,-300,-250,-350],"Credit Solvency":[100,-50,400,-300]},"columns":[{"accessor":"ID","name":"ID","type":"numeric"},{"accessor":"Annual Incoming $","name":"Annual Incoming $","type":"numeric"},{"accessor":"Current Debt $","name":"Current Debt $","type":"numeric"},{"accessor":"Credit Solvency","name":"Credit Solvency","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"aaae68227f46b3eba0036ac4188d2a40","key":"aaae68227f46b3eba0036ac4188d2a40"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+
+- **Algorítmo** define um processo para analisar um conjunto de dados e identificar padrões recorrentes no conjunto de dados (e.g o algorítmo pode encontrar um padrão que relaciona renda pessoal anual e débito atual à score de solvência de crédito) 
+- **Function** é associação determinística de um conjunto de valores de entrada (input) para um ou mais valores de saída (output)
+
+$$
+f(\text{input}) = \text{output}
+$$
+]
+
+---
+# Introdução ao Deep Learning
+
+### Função
+
+.pull-left[
+Um algorítmo de machine learning é um processo de busca a fim de escolher a melhor função que se ajusta ao conjunto de dados
+
+$$
+`\begin{align}
+f(\text{input}) &amp;= \text{output}  \\
+f(5, 5) &amp;= 25 \\
+f(2, 6) &amp;= 12 \\
+f(4, 4) &amp;= 16 \\
+f(2, 2) &amp;= 4
+\end{align}`
+$$
+*What is the best function/operation?*
+*Qual é a melhor função/operação*
+]
+
+--
+.pull-right[
+
+**Multiplicação** é a melhor escolha aqui!
+
+$$
+`\begin{align}
+5\times 5 &amp;= 25 \\
+2\times 6 &amp;= 12 \\
+4\times 4 &amp;= 16 \\
+2\times 2 &amp;= 4
+\end{align}`
+$$
+]
+
+---
+# Introdução ao Deep Learning
+
+### Supervisionado, Não supervisionado, and Aprendizado por reforço
+
+#### Supervisionado
+No aprendizado de máquina supervisionado, cada exemplo no conjunto de dados é rotulado com o valor alvo esperado.
+
+#### Não supervisionado
+No aprendizado de máquina não supervisionado, não há rótulo e geralmente é usado para agrupar dados.
+
+#### Aprendizado por reforço
+Um agente precisa aprender uma política de como deve agir em um ambiente para ser recompensado. O objetivo do agente é aprender com base na sua observação atual e estado do ambiente para que ação ele deve tomar.
+
+---
+# Fundamentos Conceituais
+
+.pull-left[
+**Deep Learning** é um modelo matemático que foi inspirado pela estrutura do cérebro. O cérebro humano é composto por um grande número de células nervosas chamadas de neurônios (estimativas dizem algo em torno de 100 bilhões)
+]
+.pull-right[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="resources/images/neurons.png" alt="Relação com um neurônio de um cérebro humano" width="90%" /&gt;
+&lt;p class="caption"&gt;Relação com um neurônio de um cérebro humano&lt;/p&gt;
+&lt;/div&gt;
+]
+
+Um neurônio funciona de forma simples. Se o estímulo de entrada é forte o bastante, então é transmitido um pulso elétrico (potencial de ação) para o outro neurônio em seu terminal.
+
+---
+# Fundamentos Conceituais
+
+.pull-left[
+&gt;**Uma rede neural artificial consiste no processamento de informação em uma rede de simples unidades de neurônios.** *O poder da rede não é resultado de um modelo matemático complexo, mas na interação de vários simples neurônios.*
+
+Deep Learning é uma rede neural artificial que tem muitas camadas ocultas.
+
+]
+.pull-right[
+<div id="htmlwidget-2630a54b0e772eb2aa38" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2630a54b0e772eb2aa38">{"x":{"diagram":"digraph G {\n\n        rankdir=LR\n        splines=line\n        tooltip=\"Estrutura\"\n        \n        node [fixedsize=true,label=\"\"];\n\n        subgraph cluster_0 {\n\t\tcolor=white;\n\t\tnode [style=solid,color=blue4,shape=circle];\n\t\tx1 x2 x3[label=\"...\",shape=none] x4;\n\t\tlabel = \"10.000 palavras \\n (input)\";\n\t}\n\n\tsubgraph cluster_1 {\n\t\tcolor=white;\n\t\tnode [style=solid,color=red2,shape=circle];\n\t\ta12 a22 a32[label=\"...\",shape=none] a42;\n\t\tlabel = \"Camada \\n oculta\";\n\t}\n\t\n\tsubgraph cluster_2 {\n\t\tcolor=white;\n\t\tnode [style=solid,color=red2,shape=circle];\n\t\ta13 a23 a33[label=\"...\",shape=none] a43;\n\t\tlabel = \"Camada \\n oculta\";\n\t}\n\n\tsubgraph cluster_3 {\n\t\tcolor=white;\n\t\tnode [style=solid,color=seagreen2,shape=circle];\n\t\tO;\n\t\tlabel=\"Classificação \\n (output)\";\n\t}\n\n        x1 -> a12;\n        x1 -> a22;\n        x1 -> a32;\n        x1 -> a42;\n        \n        x2 -> a12;\n        x2 -> a22;\n        x2 -> a32;\n        x2 -> a42;\n        \n        x3 -> a12;\n        x3 -> a22;\n        x3 -> a32;\n        x3 -> a42;\n        \n        x4 -> a12;\n        x4 -> a22;\n        x4 -> a32;\n        x4 -> a42;\n        \n        a12 -> a13;\n        a12 -> a23;\n        a12 -> a33;\n        a12 -> a43;\n        \n        a22 -> a13;\n        a22 -> a23;\n        a22 -> a33;\n        a22 -> a43;\n        \n        a32 -> a13;\n        a32 -> a23;\n        a32 -> a33;\n        a32 -> a43;\n        \n        a42 -> a13;\n        a42 -> a23;\n        a42 -> a33;\n        a42 -> a43;\n\n        a13 -> O;\n        a23 -> O;\n        a33 -> O;\n        a43 -> O;\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+# Fundamentos Conceituais
+
+### Aplicação
+
+<div id="htmlwidget-3acf43f91e7bb6e701e3" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3acf43f91e7bb6e701e3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"ID":[1,2,3,4],"Annual Incoming $":[150,250,450,200],"Current Debt $":[-100,-300,-250,-350],"Credit Solvency":[100,-50,400,-300]},"columns":[{"accessor":"ID","name":"ID","type":"numeric"},{"accessor":"Annual Incoming $","name":"Annual Incoming $","type":"numeric"},{"accessor":"Current Debt $","name":"Current Debt $","type":"numeric"},{"accessor":"Credit Solvency","name":"Credit Solvency","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"aaae68227f46b3eba0036ac4188d2a40","key":"aaae68227f46b3eba0036ac4188d2a40"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+
+#### Processo de aprendizagem do modelo
+
+$$
+`\begin{align}
+\text{solvency} &amp;= \text{income}\times \text{weight for income} + \text{debt}\times \text{weight for debt} \\
+\text{solvency} &amp;= \text{income}\times 3 + \text{debt}\times 1\quad (\text{chute inicial dos pesos}) \\
+ &amp;= 150\times 3 + (-100)\times 1 = 350
+\end{align}`
+$$
+
+O erro do modelo é de `\(100 - 350 = -250\)`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "<div class=\"progress-bar-container\">\n<div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n</div></div>"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
